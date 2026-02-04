@@ -7,35 +7,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold: #D4A437;
-      --gold-hover: #E8C567;
+      --gold: #F6C343;
+      --gold-hover: #FFD45C;
       --copper: #B87333;
       --purple: #9147FF;
       --purple-hover: #772CE8;
-      --live-red: #EB0400;
-      --bg-dark: #0E0E10;
-      --bg-base: #18181B;
-      --bg-elevated: #1F1F23;
-      --bg-card: #26262C;
-      --bg-hover: #323238;
-      --border: rgba(255,255,255,0.1);
-      --text: #EFEFF1;
-      --text-alt: #DEDEE3;
-      --text-muted: #ADADB8;
-      --text-dim: #71717A;
+      --live-red: #F23136;
+      --bg-dark: #050C1A;
+      --bg-base: #0F2036;
+      --bg-elevated: #182F4E;
+      --bg-card: #1F3B57;
+      --bg-hover: #284964;
+      --border: rgba(246,195,67,0.15);
+      --text: #F5F7FB;
+      --text-alt: #E1E6F1;
+      --text-muted: #A8B6CE;
+      --text-dim: #7F92AE;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg-dark); color: var(--text); overflow-x: hidden; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: linear-gradient(180deg, var(--bg-dark), var(--bg-base)); color: var(--text); overflow-x: hidden; }
     
     /* TOP NAV */
     .topnav { position: fixed; top: 0; left: 0; right: 0; height: 50px; background: var(--bg-base); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 10px; z-index: 1000; }
     .topnav-section { display: flex; align-items: center; flex: 1; }
     .topnav-section.center { justify-content: center; }
     .topnav-section.right { justify-content: flex-end; }
-    .topnav-brand { display: flex; align-items: center; gap: 8px; padding: 5px 10px; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
+    .topnav-brand { display: flex; align-items: center; padding: 5px 6px; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
     .topnav-brand:hover { background: var(--bg-hover); }
-    .topnav-logo { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
-    .topnav-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--gold); }
+    .logo-frame { width: 64px; height: 44px; overflow: hidden; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+    .topnav-logo { width: 100%; height: auto; border-radius: 4px; object-fit: contain; }
     .topnav-links { display: flex; margin-left: 10px; }
     .topnav-link { padding: 12px 10px; font-size: 13px; font-weight: 600; color: var(--text-muted); background: none; border: none; cursor: pointer; transition: color 0.15s; position: relative; }
     .topnav-link:hover { color: var(--gold); }
@@ -102,10 +102,15 @@
     .player-page { display: none; }
     .player-page.active { display: block; }
     .player-container { display: flex; height: calc(100vh - 50px); }
-    .player-main { flex: 1; display: flex; flex-direction: column; background: #000; }
-    .player-video { flex: 1; position: relative; background: #000; }
-    .player-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .player-controls { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; background: var(--bg-base); border-top: 1px solid var(--border); }
+    .player-main { flex: 1; display: flex; flex-direction: column; background: var(--bg-dark); }
+    .player-video { flex: 1; position: relative; background: var(--bg-base); display: flex; align-items: center; justify-content: center; }
+    .player-video video { width: 100%; height: 100%; object-fit: contain; background: var(--bg-dark); }
+    .player-controls { display: flex; flex-direction: column; gap: 8px; padding: 10px 16px; background: var(--bg-base); border-top: 1px solid var(--border); }
+    .player-seek { display: flex; align-items: center; gap: 10px; }
+    .player-controls-bar { display: flex; align-items: center; justify-content: space-between; }
+    .seek-time { font-size: 12px; color: var(--text-muted); min-width: 90px; text-align: right; }
+    .seek-slider { flex: 1; height: 4px; -webkit-appearance: none; background: var(--bg-hover); border-radius: 2px; cursor: pointer; }
+    .seek-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; }
     .player-controls-left, .player-controls-right { display: flex; align-items: center; gap: 10px; }
     .player-controls-right { gap: 5px; }
     .player-ctrl { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: none; border: none; color: var(--text-muted); border-radius: 4px; cursor: pointer; font-size: 14px; transition: all 0.15s; }
@@ -114,6 +119,7 @@
     .player-volume { display: flex; align-items: center; gap: 5px; }
     .volume-slider { width: 80px; height: 4px; -webkit-appearance: none; background: var(--bg-hover); border-radius: 2px; cursor: pointer; }
     .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--text); border-radius: 50%; }
+    .player-speed { padding: 4px 8px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 4px; color: var(--text); font-size: 11px; font-weight: 600; cursor: pointer; }
     .player-quality { padding: 4px 8px; background: var(--bg-elevated); border: none; border-radius: 4px; color: var(--text); font-size: 11px; font-weight: 600; cursor: pointer; }
     .player-quality:hover { background: var(--bg-hover); }
     .player-info { padding: 16px; background: var(--bg-base); border-top: 1px solid var(--border); }
@@ -224,9 +230,10 @@
   <!-- Top Navigation -->
   <nav class="topnav">
     <div class="topnav-section">
-      <div class="topnav-brand" onclick="goHome()">
-        <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="NECS" class="topnav-logo">
-        <span class="topnav-title">NECS</span>
+      <div class="topnav-brand" onclick="goHome()" aria-label="NECS">
+        <div class="logo-frame">
+          <img src="images/necs-logo.png" alt="NECS logo" class="topnav-logo">
+        </div>
       </div>
       <div class="topnav-links">
         <button class="topnav-link active" id="nav-following" onclick="showPage('browse'); setNavActive('following')">Following</button>
@@ -249,7 +256,7 @@
       <button class="topnav-btn topnav-btn-secondary" onclick="showToast('Log In dialog opened')">Log In</button>
       <button class="topnav-btn topnav-btn-primary" onclick="showToast('Sign Up dialog opened')">Sign Up</button>
       <div class="topnav-user" onclick="showToast('Opening profile menu')">
-        <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="User" class="topnav-avatar">
+        <img src="images/necs-logo.png" alt="User" class="topnav-avatar">
         <span class="topnav-username">NECSFan</span>
       </div>
     </div>
@@ -265,7 +272,7 @@
       <div class="sidebar-label">Followed Channels</div>
       <div class="channel live" onclick="watchStream('necs-main')">
         <div class="channel-avatar-wrap">
-          <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="NECS" class="channel-avatar">
+          <img src="images/necs-logo.png" alt="NECS" class="channel-avatar">
           <span class="channel-live-dot"></span>
         </div>
         <div class="channel-info"><div class="channel-name">NECS Official</div><div class="channel-game">VALORANT</div></div>
@@ -337,7 +344,7 @@
                 <span class="stream-viewers"><span class="viewers-dot"></span>156.2K</span>
               </div>
               <div class="stream-info">
-                <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="Channel" class="stream-avatar" onclick="event.stopPropagation(); showToast('Viewing NECS Official profile')">
+                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar" onclick="event.stopPropagation(); showToast('Viewing NECS Official profile')">
                 <div class="stream-meta">
                   <div class="stream-title">NECS 2026 Grand Finals - Championship Day!</div>
                   <div class="stream-channel" onclick="event.stopPropagation(); showToast('Viewing NECS Official channel')">NECS Official</div>
@@ -397,7 +404,7 @@
                 <span class="stream-viewers"><span class="viewers-dot"></span>12.3K</span>
               </div>
               <div class="stream-info">
-                <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="Channel" class="stream-avatar" onclick="event.stopPropagation(); showToast('Viewing channel profile')">
+                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar" onclick="event.stopPropagation(); showToast('Viewing channel profile')">
                 <div class="stream-meta">
                   <div class="stream-title">Behind the Scenes - Bridgestone Arena</div>
                   <div class="stream-channel" onclick="event.stopPropagation(); showToast('Viewing channel')">NECS BTS</div>
@@ -452,7 +459,7 @@
                 <span class="stream-duration">0:32</span>
               </div>
               <div class="stream-info">
-                <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="Channel" class="stream-avatar">
+                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar">
                 <div class="stream-meta">
                   <div class="stream-title">TenZ INSANE 1v5 ACE CLUTCH</div>
                   <div class="stream-channel">Clipped by NECSFan • 245K views</div>
@@ -466,7 +473,7 @@
                 <span class="stream-duration">0:47</span>
               </div>
               <div class="stream-info">
-                <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="Channel" class="stream-avatar">
+                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar">
                 <div class="stream-meta">
                   <div class="stream-title">TRIPLE OVERTIME GAME WINNER</div>
                   <div class="stream-channel">Clipped by RLFanatic • 189K views</div>
@@ -480,7 +487,7 @@
                 <span class="stream-duration">0:28</span>
               </div>
               <div class="stream-info">
-                <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="Channel" class="stream-avatar">
+                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar">
                 <div class="stream-meta">
                   <div class="stream-title">MkLeo PERFECT 3-STOCK</div>
                   <div class="stream-channel">Clipped by SmashLover • 156K views</div>
@@ -497,28 +504,42 @@
       <div class="player-container">
         <div class="player-main">
           <div class="player-video">
-            <iframe id="player-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <video id="player-video" playsinline></video>
           </div>
           <div class="player-controls">
-            <div class="player-controls-left">
-              <button class="player-ctrl" onclick="togglePlay()">▶</button>
-              <div class="player-volume">
-                <button class="player-ctrl" onclick="toggleMute()">🔊</button>
-                <input type="range" class="volume-slider" min="0" max="100" value="75" onchange="setVolume(this.value)">
-              </div>
+            <div class="player-seek">
+              <input type="range" class="seek-slider" id="seek-slider" min="0" max="100" value="0" oninput="seekTo(this.value)">
+              <span class="seek-time" id="time-display">0:00 / 0:00</span>
             </div>
-            <div class="player-controls-right">
-              <button class="player-ctrl" id="chat-toggle" onclick="toggleChat()">💬</button>
-              <button class="player-ctrl" onclick="showToast('Clip created!')">📎</button>
-              <button class="player-ctrl" onclick="showToast('Settings opened')">⚙️</button>
-              <button class="player-quality" onclick="cycleQuality()">1080p</button>
-              <button class="player-ctrl" onclick="toggleTheater()">🖥️</button>
-              <button class="player-ctrl" onclick="toggleFullscreen()">⛶</button>
+            <div class="player-controls-bar">
+              <div class="player-controls-left">
+                <button class="player-ctrl" id="play-btn" onclick="togglePlay()">▶</button>
+                <div class="player-volume">
+                  <button class="player-ctrl" id="mute-btn" onclick="toggleMute()">🔊</button>
+                  <input type="range" class="volume-slider" min="0" max="100" value="75" oninput="setVolume(this.value)">
+                </div>
+              </div>
+              <div class="player-controls-right">
+                <select class="player-speed" id="speed-select" onchange="setSpeed(this.value)">
+                  <option value="0.5">0.5x</option>
+                  <option value="0.75">0.75x</option>
+                  <option value="1" selected>1x</option>
+                  <option value="1.25">1.25x</option>
+                  <option value="1.5">1.5x</option>
+                  <option value="2">2x</option>
+                </select>
+                <button class="player-ctrl" id="chat-toggle" onclick="toggleChat()">💬</button>
+                <button class="player-ctrl" onclick="showToast('Clip created!')">📎</button>
+                <button class="player-ctrl" onclick="showToast('Settings opened')">⚙️</button>
+                <button class="player-quality" onclick="cycleQuality()">1080p</button>
+                <button class="player-ctrl" onclick="toggleTheater()">🖥️</button>
+                <button class="player-ctrl" onclick="toggleFullscreen()">⛶</button>
+              </div>
             </div>
           </div>
           <div class="player-info">
             <div class="player-info-top">
-              <img src="images/Screen Shot 2026-01-13 at 1.02.47 AM.png" alt="Channel" class="player-info-avatar" id="player-avatar" onclick="showToast('Viewing channel profile')">
+              <img src="images/necs-logo.png" alt="Channel" class="player-info-avatar" id="player-avatar" onclick="showToast('Viewing channel profile')">
               <div class="player-info-details">
                 <div class="player-info-title" id="player-title">Stream Title</div>
                 <div class="player-info-channel" id="player-channel" onclick="showToast('Viewing channel')">Channel Name</div>
@@ -563,17 +584,17 @@
   
   <script>
     const streams = {
-      'necs-main': { video: 'https://www.youtube.com/embed/e_E9W2vsRG4?autoplay=1', title: 'NECS 2026 Grand Finals - Championship Day!', channel: 'NECS Official', game: 'VALORANT', viewers: '156,234', avatar: 'images/Screen Shot 2026-01-13 at 1.02.47 AM.png' },
-      'necs-val': { video: 'https://www.youtube.com/embed/fLUJDx-GBzk?autoplay=1', title: 'SEN vs LOUD - Semifinals', channel: 'NECS Valorant', game: 'VALORANT', viewers: '89,234', avatar: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
-      'necs-rl': { video: 'https://www.youtube.com/embed/TIQz8bwJvqM?autoplay=1', title: 'RLCS x NECS - Winners Finals', channel: 'NECS Rocket League', game: 'Rocket League', viewers: '67,412', avatar: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
-      'necs-smash': { video: 'https://www.youtube.com/embed/IHHqXSfHkYc?autoplay=1', title: 'SSBU Invitational - Top 8 Finals', channel: 'NECS Smash', game: 'Super Smash Bros. Ultimate', viewers: '45,123', avatar: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' },
-      'necs-bts': { video: 'https://www.youtube.com/embed/DWcJFNfaw9c?autoplay=1', title: 'Behind the Scenes - Bridgestone Arena', channel: 'NECS BTS', game: 'Just Chatting', viewers: '12,345', avatar: 'images/Screen Shot 2026-01-13 at 1.02.47 AM.png' },
-      'tenz': { video: 'https://www.youtube.com/embed/JnQeUYpG5o0?autoplay=1', title: 'TenZ Ranked Grind - Road to Radiant', channel: 'TenZ', game: 'VALORANT', viewers: '34,567', avatar: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
-      'sypical': { video: 'https://www.youtube.com/embed/3p8mfE1IFJ0?autoplay=1', title: 'Sypical Pro Training Session', channel: 'Sypical', game: 'Rocket League', viewers: '18,234', avatar: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
-      'mkleo': { video: 'https://www.youtube.com/embed/8WQpYokxTkA?autoplay=1', title: 'MkLeo Tournament Practice', channel: 'MkLeo', game: 'Super Smash Bros. Ultimate', viewers: '22,456', avatar: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' },
-      'clip-tenz': { video: 'https://www.youtube.com/embed/qW3xyzGjLKE?autoplay=1', title: 'TenZ INSANE 1v5 ACE CLUTCH', channel: 'NECS Clips', game: 'VALORANT', viewers: '245,000', avatar: 'images/Screen Shot 2026-01-13 at 1.02.47 AM.png' },
-      'clip-rl': { video: 'https://www.youtube.com/embed/Ut1xtPejy2c?autoplay=1', title: 'TRIPLE OVERTIME GAME WINNER', channel: 'NECS Clips', game: 'Rocket League', viewers: '189,000', avatar: 'images/Screen Shot 2026-01-13 at 1.02.47 AM.png' },
-      'clip-mkleo': { video: 'https://www.youtube.com/embed/FpDPkE4bfKs?autoplay=1', title: 'MkLeo PERFECT 3-STOCK', channel: 'NECS Clips', game: 'Super Smash Bros. Ultimate', viewers: '156,000', avatar: 'images/Screen Shot 2026-01-13 at 1.02.47 AM.png' }
+      'necs-main': { video: 'images/videos/valorant.mp4', title: 'NECS 2026 Grand Finals - Championship Day!', channel: 'NECS Official', game: 'VALORANT', viewers: '156,234', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
+      'necs-val': { video: 'images/videos/valorant.mp4', title: 'SEN vs LOUD - Semifinals', channel: 'NECS Valorant', game: 'VALORANT', viewers: '89,234', avatar: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
+      'necs-rl': { video: 'images/videos/rocket.mp4', title: 'RLCS x NECS - Winners Finals', channel: 'NECS Rocket League', game: 'Rocket League', viewers: '67,412', avatar: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
+      'necs-smash': { video: 'images/videos/smash.mp4', title: 'SSBU Invitational - Top 8 Finals', channel: 'NECS Smash', game: 'Super Smash Bros. Ultimate', viewers: '45,123', avatar: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' },
+      'necs-bts': { video: 'images/videos/valorant.mp4', title: 'Behind the Scenes - Bridgestone Arena', channel: 'NECS BTS', game: 'Just Chatting', viewers: '12,345', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.43 AM.png' },
+      'tenz': { video: 'images/videos/valorant.mp4', title: 'TenZ Ranked Grind - Road to Radiant', channel: 'TenZ', game: 'VALORANT', viewers: '34,567', avatar: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
+      'sypical': { video: 'images/videos/rocket.mp4', title: 'Sypical Pro Training Session', channel: 'Sypical', game: 'Rocket League', viewers: '18,234', avatar: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
+      'mkleo': { video: 'images/videos/smash.mp4', title: 'MkLeo Tournament Practice', channel: 'MkLeo', game: 'Super Smash Bros. Ultimate', viewers: '22,456', avatar: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' },
+      'clip-tenz': { video: 'images/videos/valorant.mp4', title: 'TenZ INSANE 1v5 ACE CLUTCH', channel: 'NECS Clips', game: 'VALORANT', viewers: '245,000', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
+      'clip-rl': { video: 'images/videos/rocket.mp4', title: 'TRIPLE OVERTIME GAME WINNER', channel: 'NECS Clips', game: 'Rocket League', viewers: '189,000', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
+      'clip-mkleo': { video: 'images/videos/smash.mp4', title: 'MkLeo PERFECT 3-STOCK', channel: 'NECS Clips', game: 'Super Smash Bros. Ultimate', viewers: '156,000', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' }
     };
     
     let currentPage = 'browse', isFollowing = false, chatInterval = null, sidebarCollapsed = false, chatHidden = false, currentQuality = 0;
@@ -581,7 +602,15 @@
     
     function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
     function setNavActive(id) { document.querySelectorAll('.topnav-link').forEach(l => l.classList.remove('active')); document.getElementById('nav-' + id).classList.add('active'); }
-    function showPage(page) { currentPage = page; if (page === 'browse') { document.getElementById('browse-page').classList.remove('hidden'); document.getElementById('player-page').classList.remove('active'); document.getElementById('player-iframe').src = ''; if (chatInterval) clearInterval(chatInterval); } }
+    function showPage(page) {
+      currentPage = page;
+      if (page === 'browse') {
+        document.getElementById('browse-page').classList.remove('hidden');
+        document.getElementById('player-page').classList.remove('active');
+        stopVideo();
+        if (chatInterval) clearInterval(chatInterval);
+      }
+    }
     function goHome() { showPage('browse'); setNavActive('following'); }
     function toggleSidebar() { sidebarCollapsed = !sidebarCollapsed; document.getElementById('sidebar').classList.toggle('collapsed', sidebarCollapsed); document.getElementById('main').classList.toggle('expanded', sidebarCollapsed); }
     function handleSearch(e) { if (e.key === 'Enter') doSearch(); }
@@ -592,7 +621,7 @@
       if (!stream) { showToast('Stream not found'); return; }
       document.getElementById('browse-page').classList.add('hidden');
       document.getElementById('player-page').classList.add('active');
-      document.getElementById('player-iframe').src = stream.video;
+      loadVideo(stream.video, stream.poster);
       document.getElementById('player-title').textContent = stream.title;
       document.getElementById('player-channel').textContent = stream.channel;
       document.getElementById('player-game').textContent = stream.game;
@@ -627,9 +656,92 @@
     function sendChatMessage() { const input = document.getElementById('chat-input'); const text = input.value.trim(); if (text) { addChatMsg('You', 'user-gold', '🏆', text); input.value = ''; } }
     function addEmoji() { const emojis = ['😀', '🔥', '💯', '👏', '🎮', '🏆', '❤️', '😂']; document.getElementById('chat-input').value += emojis[Math.floor(Math.random() * emojis.length)]; }
     function toggleChat() { chatHidden = !chatHidden; document.getElementById('chat-sidebar').classList.toggle('hidden', chatHidden); document.getElementById('chat-toggle').classList.toggle('active', !chatHidden); }
-    function togglePlay() { showToast('Play/Pause toggled'); }
-    function toggleMute() { showToast('Mute toggled'); }
-    function setVolume(val) { showToast('Volume: ' + val + '%'); }
+    const videoEl = document.getElementById('player-video');
+    const seekSlider = document.getElementById('seek-slider');
+    const timeDisplay = document.getElementById('time-display');
+    const playBtn = document.getElementById('play-btn');
+    const muteBtn = document.getElementById('mute-btn');
+
+    function loadVideo(src, poster) {
+      videoEl.pause();
+      videoEl.src = src;
+      if (poster) videoEl.poster = poster;
+      videoEl.currentTime = 0;
+      videoEl.playbackRate = 1;
+      document.getElementById('speed-select').value = '1';
+      videoEl.volume = 0.75;
+      updatePlayState();
+      videoEl.play().catch(() => {});
+    }
+
+    function stopVideo() {
+      videoEl.pause();
+      videoEl.removeAttribute('src');
+      videoEl.load();
+      updateTimeDisplay(0, 0);
+      seekSlider.value = 0;
+      updatePlayState();
+    }
+
+    function togglePlay() {
+      if (videoEl.paused) {
+        videoEl.play();
+      } else {
+        videoEl.pause();
+      }
+      updatePlayState();
+    }
+
+    function toggleMute() {
+      videoEl.muted = !videoEl.muted;
+      muteBtn.textContent = videoEl.muted ? '🔇' : '🔊';
+    }
+
+    function setVolume(val) {
+      videoEl.volume = Math.min(1, Math.max(0, val / 100));
+      if (videoEl.volume === 0) videoEl.muted = true;
+      if (videoEl.volume > 0) videoEl.muted = false;
+      muteBtn.textContent = videoEl.muted ? '🔇' : '🔊';
+    }
+
+    function setSpeed(val) {
+      videoEl.playbackRate = parseFloat(val);
+      showToast('Speed: ' + val + 'x');
+    }
+
+    function seekTo(val) {
+      if (!videoEl.duration) return;
+      const pct = parseFloat(val) / 100;
+      videoEl.currentTime = pct * videoEl.duration;
+    }
+
+    function updateTimeDisplay(current, duration) {
+      const fmt = (t) => {
+        if (!isFinite(t)) return '0:00';
+        const m = Math.floor(t / 60);
+        const s = Math.floor(t % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+      };
+      timeDisplay.textContent = `${fmt(current)} / ${fmt(duration)}`;
+    }
+
+    function updatePlayState() {
+      playBtn.textContent = videoEl.paused ? '▶' : '⏸';
+    }
+
+    videoEl.addEventListener('timeupdate', () => {
+      if (!videoEl.duration) return;
+      const pct = (videoEl.currentTime / videoEl.duration) * 100;
+      seekSlider.value = pct.toString();
+      updateTimeDisplay(videoEl.currentTime, videoEl.duration);
+    });
+
+    videoEl.addEventListener('loadedmetadata', () => {
+      updateTimeDisplay(videoEl.currentTime, videoEl.duration);
+    });
+
+    videoEl.addEventListener('play', updatePlayState);
+    videoEl.addEventListener('pause', updatePlayState);
     function cycleQuality() { currentQuality = (currentQuality + 1) % qualities.length; document.querySelector('.player-quality').textContent = qualities[currentQuality]; showToast('Quality: ' + qualities[currentQuality]); }
     function toggleTheater() { showToast('Theater mode toggled'); }
     function toggleFullscreen() { const player = document.querySelector('.player-video'); if (document.fullscreenElement) document.exitFullscreen(); else player.requestFullscreen(); }
