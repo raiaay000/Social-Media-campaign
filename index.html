@@ -15,6 +15,7 @@
       --live-red: #F23136;
       --bg-dark: #050C1A;
       --bg-base: #0F2036;
+      --bg-menu: linear-gradient(180deg, #02040b 0%, #020611 40%, #000107 100%);
       --bg-elevated: #182F4E;
       --bg-card: #1F3B57;
       --bg-hover: #284964;
@@ -28,7 +29,7 @@
     body { font-family: 'Inter', -apple-system, sans-serif; background: linear-gradient(180deg, var(--bg-dark), var(--bg-base)); color: var(--text); overflow-x: hidden; }
     
     /* TOP NAV */
-    .topnav { position: fixed; top: 0; left: 0; right: 0; height: 50px; background: var(--bg-base); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 10px; z-index: 1000; }
+    .topnav { position: fixed; top: 0; left: 0; right: 0; height: 50px; background: var(--bg-menu); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; padding: 0 10px; z-index: 1000; }
     .topnav-section { display: flex; align-items: center; flex: 1; }
     .topnav-section.center { justify-content: center; }
     .topnav-section.right { justify-content: flex-end; }
@@ -62,7 +63,7 @@
     .topnav-username { font-size: 13px; font-weight: 600; }
     
     /* SIDEBAR */
-    .sidebar { position: fixed; left: 0; top: 50px; bottom: 0; width: 240px; background: var(--bg-base); border-right: 1px solid var(--border); overflow-y: auto; z-index: 500; transition: width 0.2s ease; }
+    .sidebar { position: fixed; left: 0; top: 50px; bottom: 0; width: 240px; background: var(--bg-menu); border-right: 1px solid rgba(255,255,255,0.08); overflow-y: auto; z-index: 500; transition: width 0.2s ease; }
     .sidebar.collapsed { width: 50px; }
     .sidebar::-webkit-scrollbar { width: 6px; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 3px; }
@@ -232,7 +233,7 @@
     <div class="topnav-section">
       <div class="topnav-brand" onclick="goHome()" aria-label="NECS">
         <div class="logo-frame">
-          <img src="images/necs-logo.png" alt="NECS logo" class="topnav-logo">
+          <img src="images/logo.png" alt="NECS logo" class="topnav-logo">
         </div>
       </div>
       <div class="topnav-links">
@@ -256,7 +257,7 @@
       <button class="topnav-btn topnav-btn-secondary" onclick="showToast('Log In dialog opened')">Log In</button>
       <button class="topnav-btn topnav-btn-primary" onclick="showToast('Sign Up dialog opened')">Sign Up</button>
       <div class="topnav-user" onclick="showToast('Opening profile menu')">
-        <img src="images/necs-logo.png" alt="User" class="topnav-avatar">
+        <img src="images/logo.png" alt="User" class="topnav-avatar">
         <span class="topnav-username">NECSFan</span>
       </div>
     </div>
@@ -272,7 +273,7 @@
       <div class="sidebar-label">Followed Channels</div>
       <div class="channel live" onclick="watchStream('necs-main')">
         <div class="channel-avatar-wrap">
-          <img src="images/necs-logo.png" alt="NECS" class="channel-avatar">
+          <img src="images/logo.png" alt="NECS" class="channel-avatar">
           <span class="channel-live-dot"></span>
         </div>
         <div class="channel-info"><div class="channel-name">NECS Official</div><div class="channel-game">VALORANT</div></div>
@@ -344,7 +345,7 @@
                 <span class="stream-viewers"><span class="viewers-dot"></span>156.2K</span>
               </div>
               <div class="stream-info">
-                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar" onclick="event.stopPropagation(); showToast('Viewing NECS Official profile')">
+                <img src="images/logo.png" alt="Channel" class="stream-avatar" onclick="event.stopPropagation(); showToast('Viewing NECS Official profile')">
                 <div class="stream-meta">
                   <div class="stream-title">NECS 2026 Grand Finals - Championship Day!</div>
                   <div class="stream-channel" onclick="event.stopPropagation(); showToast('Viewing NECS Official channel')">NECS Official</div>
@@ -404,7 +405,7 @@
                 <span class="stream-viewers"><span class="viewers-dot"></span>12.3K</span>
               </div>
               <div class="stream-info">
-                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar" onclick="event.stopPropagation(); showToast('Viewing channel profile')">
+                <img src="images/logo.png" alt="Channel" class="stream-avatar" onclick="event.stopPropagation(); showToast('Viewing channel profile')">
                 <div class="stream-meta">
                   <div class="stream-title">Behind the Scenes - Bridgestone Arena</div>
                   <div class="stream-channel" onclick="event.stopPropagation(); showToast('Viewing channel')">NECS BTS</div>
@@ -459,7 +460,7 @@
                 <span class="stream-duration">0:32</span>
               </div>
               <div class="stream-info">
-                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar">
+                <img src="images/logo.png" alt="Channel" class="stream-avatar">
                 <div class="stream-meta">
                   <div class="stream-title">TenZ INSANE 1v5 ACE CLUTCH</div>
                   <div class="stream-channel">Clipped by NECSFan • 245K views</div>
@@ -473,7 +474,7 @@
                 <span class="stream-duration">0:47</span>
               </div>
               <div class="stream-info">
-                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar">
+                <img src="images/logo.png" alt="Channel" class="stream-avatar">
                 <div class="stream-meta">
                   <div class="stream-title">TRIPLE OVERTIME GAME WINNER</div>
                   <div class="stream-channel">Clipped by RLFanatic • 189K views</div>
@@ -487,7 +488,7 @@
                 <span class="stream-duration">0:28</span>
               </div>
               <div class="stream-info">
-                <img src="images/necs-logo.png" alt="Channel" class="stream-avatar">
+                <img src="images/logo.png" alt="Channel" class="stream-avatar">
                 <div class="stream-meta">
                   <div class="stream-title">MkLeo PERFECT 3-STOCK</div>
                   <div class="stream-channel">Clipped by SmashLover • 156K views</div>
@@ -539,7 +540,7 @@
           </div>
           <div class="player-info">
             <div class="player-info-top">
-              <img src="images/necs-logo.png" alt="Channel" class="player-info-avatar" id="player-avatar" onclick="showToast('Viewing channel profile')">
+              <img src="images/logo.png" alt="Channel" class="player-info-avatar" id="player-avatar" onclick="showToast('Viewing channel profile')">
               <div class="player-info-details">
                 <div class="player-info-title" id="player-title">Stream Title</div>
                 <div class="player-info-channel" id="player-channel" onclick="showToast('Viewing channel')">Channel Name</div>
@@ -584,17 +585,17 @@
   
   <script>
     const streams = {
-      'necs-main': { video: 'images/videos/valorant.mp4', title: 'NECS 2026 Grand Finals - Championship Day!', channel: 'NECS Official', game: 'VALORANT', viewers: '156,234', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
+      'necs-main': { video: 'images/videos/valorant.mp4', title: 'NECS 2026 Grand Finals - Championship Day!', channel: 'NECS Official', game: 'VALORANT', viewers: '156,234', avatar: 'images/logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
       'necs-val': { video: 'images/videos/valorant.mp4', title: 'SEN vs LOUD - Semifinals', channel: 'NECS Valorant', game: 'VALORANT', viewers: '89,234', avatar: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
       'necs-rl': { video: 'images/videos/rocket.mp4', title: 'RLCS x NECS - Winners Finals', channel: 'NECS Rocket League', game: 'Rocket League', viewers: '67,412', avatar: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
       'necs-smash': { video: 'images/videos/smash.mp4', title: 'SSBU Invitational - Top 8 Finals', channel: 'NECS Smash', game: 'Super Smash Bros. Ultimate', viewers: '45,123', avatar: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' },
-      'necs-bts': { video: 'images/videos/valorant.mp4', title: 'Behind the Scenes - Bridgestone Arena', channel: 'NECS BTS', game: 'Just Chatting', viewers: '12,345', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.43 AM.png' },
+      'necs-bts': { video: 'images/videos/valorant.mp4', title: 'Behind the Scenes - Bridgestone Arena', channel: 'NECS BTS', game: 'Just Chatting', viewers: '12,345', avatar: 'images/logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.43 AM.png' },
       'tenz': { video: 'images/videos/valorant.mp4', title: 'TenZ Ranked Grind - Road to Radiant', channel: 'TenZ', game: 'VALORANT', viewers: '34,567', avatar: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
       'sypical': { video: 'images/videos/rocket.mp4', title: 'Sypical Pro Training Session', channel: 'Sypical', game: 'Rocket League', viewers: '18,234', avatar: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
       'mkleo': { video: 'images/videos/smash.mp4', title: 'MkLeo Tournament Practice', channel: 'MkLeo', game: 'Super Smash Bros. Ultimate', viewers: '22,456', avatar: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' },
-      'clip-tenz': { video: 'images/videos/valorant.mp4', title: 'TenZ INSANE 1v5 ACE CLUTCH', channel: 'NECS Clips', game: 'VALORANT', viewers: '245,000', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
-      'clip-rl': { video: 'images/videos/rocket.mp4', title: 'TRIPLE OVERTIME GAME WINNER', channel: 'NECS Clips', game: 'Rocket League', viewers: '189,000', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
-      'clip-mkleo': { video: 'images/videos/smash.mp4', title: 'MkLeo PERFECT 3-STOCK', channel: 'NECS Clips', game: 'Super Smash Bros. Ultimate', viewers: '156,000', avatar: 'images/necs-logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' }
+      'clip-tenz': { video: 'images/videos/valorant.mp4', title: 'TenZ INSANE 1v5 ACE CLUTCH', channel: 'NECS Clips', game: 'VALORANT', viewers: '245,000', avatar: 'images/logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.01.57 AM.png' },
+      'clip-rl': { video: 'images/videos/rocket.mp4', title: 'TRIPLE OVERTIME GAME WINNER', channel: 'NECS Clips', game: 'Rocket League', viewers: '189,000', avatar: 'images/logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.32 AM.png' },
+      'clip-mkleo': { video: 'images/videos/smash.mp4', title: 'MkLeo PERFECT 3-STOCK', channel: 'NECS Clips', game: 'Super Smash Bros. Ultimate', viewers: '156,000', avatar: 'images/logo.png', poster: 'images/Screen Shot 2026-01-13 at 1.02.16 AM.png' }
     };
     
     let currentPage = 'browse', isFollowing = false, chatInterval = null, sidebarCollapsed = false, chatHidden = false, currentQuality = 0;
